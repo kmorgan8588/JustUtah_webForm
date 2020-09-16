@@ -9,7 +9,7 @@ const ContactForm = (props) => {
 
     return (
         <div className="form-style">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Contact Us</legend>
                     <label>Name</label>
@@ -24,11 +24,17 @@ const ContactForm = (props) => {
                     <br />
                     <input type="text" name="birthDate" placeholder="MM/DD/YYYY *" value={fields.birthDate || ""} onChange={handleChange} required />
                     <br />
-                    <input type="checkbox" name="emailConsent" value={fields.emailConsent || false} onChange={handleChange} required />
-                    <label htmlFor="emailConsent">I agree to be contacted via email</label>
+                    <div className="checkbox">
+                        <label >
+                            <input type="checkbox" id="emailConsent" name="emailConsent" checked={fields.emailConsent || false} onChange={handleChange} required />
+                            I agree to be contacted via email
+                        </label>
+                    </div>
                 </fieldset>
-                <button onClick={reset}>Clear</button>
-                <button onClick={handleSubmit}>Submit</button>
+                <div id="button-container">
+                    <button onClick={reset}>Clear</button>
+                    <button>Submit</button>
+                </div>
             </form>
         </div>
     )
