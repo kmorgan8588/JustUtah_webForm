@@ -16,7 +16,7 @@ const useForm = (callback) => {
     const handleChange = (event) => {
         const newFields = {
             ...fields,
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.type === "checkbox" ? event.target.checked : event.target.value,
         }
         setFields(newFields);
     };
