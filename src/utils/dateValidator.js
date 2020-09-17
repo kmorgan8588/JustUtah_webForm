@@ -2,6 +2,7 @@ const dateValidator = (date) => {
     if (!Date.parse(date)) {
         return false;
     }
+
     const realDate = new Date(date);
     realDate.setHours(24, 0, 0, 0);
 

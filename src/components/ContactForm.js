@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useForm from '../hooks/useForm';
 import dateValidator from '../utils/dateValidator';
 import postEmail from '../utils/postEmail';
+import alertMessage from '../utils/alertMessage';
 
 const ContactForm = (props) => {
     const [success, setSuccess] = useState(false);
@@ -23,10 +24,6 @@ const ContactForm = (props) => {
 
     const { fields, handleSubmit, handleChange, reset } = useForm(handleSend);
 
-    const alertMessage = (event) => {
-        event.preventDefault();
-        alert("Please choose a date after 1900-1-1 and before today");
-    }
 
     useEffect(() => {
         if (dateValidator(fields.birthDate)) {
@@ -42,7 +39,7 @@ const ContactForm = (props) => {
                 <fieldset>
                     <legend>Contact Us</legend>
 
-                    {success ? <span>Thanks for your submission</span> : null}
+                    {success ? <span data-testid="success">Thanks for your submission</span> : null}
                     <br />
                     <label htmlFor='name'>Name</label>
                     <br />
@@ -52,9 +49,9 @@ const ContactForm = (props) => {
                     <br />
                     <input type="email" id='email' name="email" placeholder="Your Email*" value={fields.email || ""} onChange={handleChange} required />
                     <br />
-                    <label htmlFor='birthDate'>Birth date</label>
+                    <label>Birth date</label>
                     <br />
-                    <input type="date" id='birthDate' name="birthDate" min="1900-01-01" max={new Date().getTime()} value={fields.birthDate || ""} onChange={handleChange} required />
+                    <input type="date" data-testid="date-input" name="birthDate" value={fields.birthDate || ""} onChange={handleChange} required />
                     <br />
                     <div className="checkbox">
                         <label >
