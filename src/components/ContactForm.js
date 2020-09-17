@@ -44,17 +44,17 @@ const ContactForm = (props) => {
 
                     {success ? <span>Thanks for your submission</span> : null}
                     <br />
-                    <label>Name</label>
+                    <label htmlFor='name'>Name</label>
                     <br />
-                    <input type="text" name="name" placeholder="Your Name *" pattern="^(\w\w+)\s(\w+)$" title="First (space) Last" value={fields.name || ""} onChange={handleChange} required />
+                    <input type="text" id='name' name="name" placeholder="Your Name*" pattern="^(\w\w+)\s(\w+)$" title="First (space) Last" value={fields.name || ""} onChange={handleChange} required />
                     <br />
-                    <label>Email</label>
+                    <label htmlFor='email'>Email</label>
                     <br />
-                    <input type="email" name="email" placeholder="Your Email *" value={fields.email || ""} onChange={handleChange} required />
+                    <input type="email" id='email' name="email" placeholder="Your Email*" value={fields.email || ""} onChange={handleChange} required />
                     <br />
-                    <label>Birth date</label>
+                    <label htmlFor='birthDate'>Birth date</label>
                     <br />
-                    <input type="date" name="birthDate" min="1900-01-01" max={new Date().getTime()} value={fields.birthDate || ""} onChange={handleChange} required />
+                    <input type="date" id='birthDate' name="birthDate" min="1900-01-01" max={new Date().getTime()} value={fields.birthDate || ""} onChange={handleChange} required />
                     <br />
                     <div className="checkbox">
                         <label >
