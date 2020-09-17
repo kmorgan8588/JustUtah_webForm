@@ -1,4 +1,8 @@
 const dateValidator = (date) => {
+    if (date === '' || date === undefined) {
+        return true;
+    }
+
     if (!Date.parse(date)) {
         return false;
     }

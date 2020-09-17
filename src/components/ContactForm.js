@@ -6,7 +6,7 @@ import alertMessage from '../utils/alertMessage';
 
 const ContactForm = (props) => {
     const [success, setSuccess] = useState(false);
-    const [isDateValid, setIsDateValid] = useState(false);
+    const [isDateValid, setIsDateValid] = useState(true);
 
     const handleSend = () => {
         postEmail('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', fields)
@@ -51,7 +51,7 @@ const ContactForm = (props) => {
                     <br />
                     <label>Birth date</label>
                     <br />
-                    <input type="date" data-testid="date-input" name="birthDate" value={fields.birthDate || ""} onChange={handleChange} required />
+                    <input type="date" data-testid="date-input" name="birthDate" value={fields.birthDate || ""} onChange={handleChange} />
                     <br />
                     <div className="checkbox">
                         <label >
