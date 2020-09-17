@@ -1,6 +1,6 @@
 const alertMessage = (event) => {
     event.preventDefault();
-    alert("Please choose a date after 1900-1-1 and before today");
+    alert("Please choose a date after December 31st 1899 and before today");
 }
 
 export default alertMessage;
