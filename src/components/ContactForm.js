@@ -6,7 +6,7 @@ import alertMessage from '../utils/alertMessage';
 
 const ContactForm = (props) => {
     const [success, setSuccess] = useState(false);
-    const [validDate, setValidDate] = useState(false);
+    const [isDateValid, setIsDateValid] = useState(false);
 
     const handleSend = () => {
         postEmail('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', fields)
@@ -27,15 +27,15 @@ const ContactForm = (props) => {
 
     useEffect(() => {
         if (dateValidator(fields.birthDate)) {
-            setValidDate(true)
+            setIsDateValid(true)
         } else {
-            setValidDate(false);
+            setIsDateValid(false);
         }
     }, [fields.birthDate])
 
     return (
         <div className="form-style">
-            <form onSubmit={validDate ? handleSubmit : alertMessage}>
+            <form onSubmit={isDateValid ? handleSubmit : alertMessage}>
                 <fieldset>
                     <legend>Contact Us</legend>
 
