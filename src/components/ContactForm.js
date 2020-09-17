@@ -9,8 +9,14 @@ const ContactForm = (props) => {
 
     const handleSend = () => {
         postEmail('https://my-json-server.typicode.com/JustUtahCoders/interview-users-api/users', fields)
-            .then(response => console.log(response))
-            .then(() => setSuccess(true))
+            .then(response => response.status)
+            .then(code => {
+                if (code === 201) {
+                    setSuccess(true);
+                } else {
+                    throw new Error('Something went wrong, please try again')
+                }
+            })
             .then(() => reset())
             .catch((err) => alert(err));
     }
@@ -19,7 +25,7 @@ const ContactForm = (props) => {
 
     const alertMessage = (event) => {
         event.preventDefault();
-        alert("Please ensure you've chosen a valid birthday");
+        alert("Please choose a date after 1900-1-1 and before today");
     }
 
     useEffect(() => {
@@ -40,7 +46,7 @@ const ContactForm = (props) => {
                     <br />
                     <label>Name</label>
                     <br />
-                    <input type="text" name="name" placeholder="Your Name *" value={fields.name || ""} onChange={handleChange} required />
+                    <input type="text" name="name" placeholder="Your Name *" pattern="^(\w\w+)\s(\w+)$" title="First (space) Last" value={fields.name || ""} onChange={handleChange} required />
                     <br />
                     <label>Email</label>
                     <br />
@@ -58,7 +64,10 @@ const ContactForm = (props) => {
                     </div>
                 </fieldset>
                 <div id="button-container">
-                    <button onClick={reset}>Clear</button>
+                    <button onClick={() => {
+                        setSuccess(false);
+                        reset();
+                    }}>Clear</button>
                     <button>Submit</button>
                 </div>
             </form>

@@ -8,7 +8,6 @@ const postEmail = (url = '', data = {}) => {
     };
 
     return fetch(url, options)
-    // .then(response => response.json());
 };
 
 export default postEmail;
